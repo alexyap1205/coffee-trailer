@@ -38,10 +38,9 @@ const Home = () => {
       sx={{
         minHeight: '100vh',
         backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/trailer.jpg)',
-        backgroundSize: '90% auto',
+        backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        backgroundAttachment: 'fixed',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',

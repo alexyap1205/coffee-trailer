@@ -1,11 +1,43 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Button, Box, useMediaQuery, useTheme } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button, Box, useMediaQuery, useTheme, IconButton, Drawer, List, ListItem, ListItemText } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 import CoffeeOutlined from '@mui/icons-material/CoffeeOutlined';
+import MenuIcon from '@mui/icons-material/Menu';
 
 const Navbar = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const [drawerOpen, setDrawerOpen] = React.useState(false);
+
+  const toggleDrawer = (open) => (event) => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+    setDrawerOpen(open);
+  };
+
+  const navLinks = [
+    { title: 'Home', path: '/' },
+    { title: 'Locations', path: '/locations' },
+    { title: 'Menu', path: '/menu' },
+  ];
+
+  const drawerContent = (
+    <Box
+      sx={{ width: 250 }}
+      role="presentation"
+      onClick={toggleDrawer(false)}
+      onKeyDown={toggleDrawer(false)}
+    >
+      <List>
+        {navLinks.map((link) => (
+          <ListItem button component={RouterLink} to={link.path} key={link.title}>
+            <ListItemText primary={link.title} />
+          </ListItem>
+        ))}
+      </List>
+    </Box>
+  );
 
   return (
     <AppBar
@@ -39,50 +71,46 @@ const Navbar = () => {
             Cubebakes Cafe
           </Typography>
         </Box>
-        <Box sx={{ display: 'flex', gap: 2 }}>
-          <Button 
-            color="inherit" 
-            component={RouterLink} 
-            to="/"
-            sx={{
-              '&:hover': {
-                backgroundColor: 'rgba(184, 134, 11, 0.1)',
-                transform: 'translateY(-2px)',
-              },
-              transition: 'all 0.3s ease',
-            }}
-          >
-            Home
-          </Button>
-          <Button 
-            color="inherit" 
-            component={RouterLink} 
-            to="/locations"
-            sx={{
-              '&:hover': {
-                backgroundColor: 'rgba(184, 134, 11, 0.1)',
-                transform: 'translateY(-2px)',
-              },
-              transition: 'all 0.3s ease',
-            }}
-          >
-            Locations
-          </Button>
-          <Button 
-            color="inherit" 
-            component={RouterLink} 
-            to="/menu"
-            sx={{
-              '&:hover': {
-                backgroundColor: 'rgba(184, 134, 11, 0.1)',
-                transform: 'translateY(-2px)',
-              },
-              transition: 'all 0.3s ease',
-            }}
-          >
-            Menu
-          </Button>
-        </Box>
+        {isMobile ? (
+          <>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={toggleDrawer(true)}
+              sx={{ ml: 2 }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Drawer
+              anchor="right"
+              open={drawerOpen}
+              onClose={toggleDrawer(false)}
+            >
+              {drawerContent}
+            </Drawer>
+          </>
+        ) : (
+          <Box sx={{ display: 'flex', gap: 2 }}>
+            {navLinks.map((link) => (
+              <Button
+                key={link.title}
+                color="inherit"
+                component={RouterLink}
+                to={link.path}
+                sx={{
+                  '&:hover': {
+                    backgroundColor: 'rgba(184, 134, 11, 0.1)',
+                    transform: 'translateY(-2px)',
+                  },
+                  transition: 'all 0.3s ease',
+                }}
+              >
+                {link.title}
+              </Button>
+            ))}
+          </Box>
+        )}
       </Toolbar>
     </AppBar>
   );
