@@ -285,75 +285,78 @@ const Home = () => {
           </Paper>
         </Grow>
 
-                  <Grow in={showContent} timeout={2000} style={{ transitionDelay: '300ms' }}>
-                    <Paper
-                      elevation={3}
-                      sx={{
-                        p: 4,
-                        backgroundColor: 'rgba(45, 45, 45, 0.95)',
-                        color: 'text.primary',
-                        mb: 6,
-                        mt: 2,
-                        borderRadius: 2,
-                        backdropFilter: 'blur(10px)',
-                        border: '1px solid rgba(184, 134, 11, 0.2)',
-                        transition: 'all 0.3s ease',
-                        '&:hover': {
-                          transform: 'translateY(-5px)',
-                          boxShadow: '0 10px 20px rgba(0,0,0,0.3)',
-                          border: '1px solid rgba(184, 134, 11, 0.4)',
-                        },
-                      }}
-                    >
-                      <Box sx={{ 
-                        display: 'flex', 
-                        alignItems: 'center', 
-                        mb: 2, 
-                        justifyContent: 'center',
-                      }}>
-                        <AccessTimeIcon 
-                          sx={{ 
-                            color: 'primary.main', 
-                            mr: 1, 
-                            fontSize: 28,
-                          }} 
-                        />
-                        <Typography 
-                          variant="h5" 
-                          component="h3"
-                          sx={{ 
-                            fontWeight: 600,
-                            color: 'primary.main',
-                          }}
-                        >
-                          Events & Announcements
-                        </Typography>
-                      </Box>
-                      <Typography variant="body1" paragraph sx={{ 
-                        fontSize: '1.1rem',
-                        textAlign: 'center',
-                      }}>
-                        Exciting news! We'll be starting to serve our premium coffee at 
-                        <Box component="span" sx={{ 
-                          fontWeight: 700, 
-                          mx: 1, 
-                          color: 'primary.main',
-                        }}>
-                          St Joseph's Boronia
-                        </Box> 
-                        beginning 
-                        <Box component="span" sx={{ 
-                          fontWeight: 700, 
-                          ml: 1, 
-                          color: 'primary.main',
-                        }}>
-                          Wednesday, May 7th
-                        </Box>. 
-                        Come visit us for your morning brew!
-                      </Typography>
-                    </Paper>
-                  </Grow>
-          
+        {/* Hidden Events & Announcements Box */}
+        {false && (
+          <Grow in={showContent} timeout={2000} style={{ transitionDelay: '300ms' }}>
+            <Paper
+              elevation={3}
+              sx={{
+                p: 4,
+                backgroundColor: 'rgba(45, 45, 45, 0.95)',
+                color: 'text.primary',
+                mb: 6,
+                mt: 2,
+                borderRadius: 2,
+                backdropFilter: 'blur(10px)',
+                border: '1px solid rgba(184, 134, 11, 0.2)',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  transform: 'translateY(-5px)',
+                  boxShadow: '0 10px 20px rgba(0,0,0,0.3)',
+                  border: '1px solid rgba(184, 134, 11, 0.4)',
+                },
+              }}
+            >
+              <Box sx={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                mb: 2, 
+                justifyContent: 'center',
+              }}>
+                <AccessTimeIcon 
+                  sx={{ 
+                    color: 'primary.main', 
+                    mr: 1, 
+                    fontSize: 28,
+                  }} 
+                />
+                <Typography 
+                  variant="h5" 
+                  component="h3"
+                  sx={{ 
+                    fontWeight: 600,
+                    color: 'primary.main',
+                  }}
+                >
+                  Events & Announcements
+                </Typography>
+              </Box>
+              <Typography variant="body1" paragraph sx={{ 
+                fontSize: '1.1rem',
+                textAlign: 'center',
+              }}>
+                Exciting news! We'll be starting to serve our premium coffee at 
+                <Box component="span" sx={{ 
+                  fontWeight: 700, 
+                  mx: 1, 
+                  color: 'primary.main',
+                }}>
+                  St Joseph's Boronia
+                </Box> 
+                beginning 
+                <Box component="span" sx={{ 
+                  fontWeight: 700, 
+                  ml: 1, 
+                  color: 'primary.main',
+                }}>
+                  Wednesday, May 7th
+                </Box>. 
+                Come visit us for your morning brew!
+              </Typography>
+            </Paper>
+          </Grow>
+        )}
+
         <Fade in={showContent} timeout={2500}>
           <Grid container spacing={4} sx={{ mt: 4 }}>
             {features.map((feature, index) => (
